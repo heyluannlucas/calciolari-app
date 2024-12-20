@@ -109,7 +109,7 @@ const RegistrarPedido = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="orderDate">Pedido em (Data)</label>
+          <label htmlFor="orderDate">Pedido em </label>
           <input
             type="date"
             id="orderDate"

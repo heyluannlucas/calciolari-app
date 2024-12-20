@@ -10,9 +10,9 @@ function Pedidos() {
       {
         orderNumber: 1,
         customerName: "João Silva",
-        orderDate: "2024-12-15", // New field: Pedido em (data)
+        orderDate: "2024-12-15", 
         deliveryDate: "2024-12-18",
-        status: "Em Aberto", // New field: Status
+        status: "Em Aberto", 
         items: [
           { name: "Produto A", quantity: 2 },
           { name: "Produto B", quantity: 1 },
@@ -74,7 +74,7 @@ function Pedidos() {
           <tr>
             <th>Número do Pedido</th>
             <th>Cliente</th>
-            <th>Pedido em (Data)</th>
+            <th>Pedido em </th>
             <th>Data de Entrega</th>
             <th>Status</th>
             <th>Itens</th>
