@@ -23,7 +23,7 @@ const CriarCliente = () => {
 
   return (
     <div className="criar-cliente">
-      <h2>Criar Cliente</h2>
+      <h2>Registrar Cliente</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Nome</label>

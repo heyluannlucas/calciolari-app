@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaEdit, FaSave, FaTrash } from "react-icons/fa"; 
+import { FaEdit, FaSave, FaTrash } from "react-icons/fa";
 
 function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
@@ -10,7 +10,9 @@ function Pedidos() {
       {
         orderNumber: 1,
         customerName: "João Silva",
+        orderDate: "2024-12-15", // New field: Pedido em (data)
         deliveryDate: "2024-12-18",
+        status: "Em Aberto", // New field: Status
         items: [
           { name: "Produto A", quantity: 2 },
           { name: "Produto B", quantity: 1 },
@@ -19,15 +21,17 @@ function Pedidos() {
       {
         orderNumber: 2,
         customerName: "Maria Souza",
+        orderDate: "2024-12-14",
         deliveryDate: "2024-12-17",
-        items: [
-          { name: "Produto C", quantity: 3 },
-        ],
+        status: "OK",
+        items: [{ name: "Produto C", quantity: 3 }],
       },
       {
         orderNumber: 3,
         customerName: "Carlos Pereira",
+        orderDate: "2024-12-13",
         deliveryDate: "2024-12-16",
+        status: "Em Aberto",
         items: [
           { name: "Produto D", quantity: 1 },
           { name: "Produto E", quantity: 4 },
@@ -48,7 +52,7 @@ function Pedidos() {
   const handleDeleteClick = (orderNumber) => {
     const confirmDelete = window.confirm("Tem certeza que deseja deletar este pedido?");
     if (confirmDelete) {
-      const updatedPedidos = pedidos.filter(pedido => pedido.orderNumber !== orderNumber);
+      const updatedPedidos = pedidos.filter((pedido) => pedido.orderNumber !== orderNumber);
       setPedidos(updatedPedidos);
     }
   };
@@ -70,7 +74,9 @@ function Pedidos() {
           <tr>
             <th>Número do Pedido</th>
             <th>Cliente</th>
+            <th>Pedido em (Data)</th>
             <th>Data de Entrega</th>
+            <th>Status</th>
             <th>Itens</th>
             <th>Ações</th>
           </tr>
@@ -96,12 +102,38 @@ function Pedidos() {
                   {editingRow === index ? (
                     <input
                       type="date"
+                      name="orderDate"
+                      value={pedido.orderDate}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                  ) : (
+                    pedido.orderDate
+                  )}
+                </td>
+                <td>
+                  {editingRow === index ? (
+                    <input
+                      type="date"
                       name="deliveryDate"
                       value={pedido.deliveryDate}
                       onChange={(e) => handleChange(e, index)}
                     />
                   ) : (
                     pedido.deliveryDate
+                  )}
+                </td>
+                <td>
+                  {editingRow === index ? (
+                    <select
+                      name="status"
+                      value={pedido.status}
+                      onChange={(e) => handleChange(e, index)}
+                    >
+                      <option value="Em Aberto">Em Aberto</option>
+                      <option value="OK">OK</option>
+                    </select>
+                  ) : (
+                    pedido.status
                   )}
                 </td>
                 <td>
@@ -129,7 +161,7 @@ function Pedidos() {
             ))
           ) : (
             <tr>
-              <td colSpan="5">Nenhum pedido encontrado.</td>
+              <td colSpan="7">Nenhum pedido encontrado.</td>
             </tr>
           )}
         </tbody>

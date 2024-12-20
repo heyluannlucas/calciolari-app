@@ -4,6 +4,7 @@ import CriarCliente from "../pages/CriarCliente";
 import CriarProduto from "../pages/CriarProduto";
 import CriarPedido from "../pages/CriarPedido";
 import ConsultarProdutos from "../pages/ConsultarProdutos";
+import ListarPedidos from "../pages/ListarPedidos";
 
 function OverlayPage({ page, onClose }) {
   const renderPageContent = () => {
@@ -17,7 +18,7 @@ function OverlayPage({ page, onClose }) {
       case "Consultar":
         return <ConsultarProdutos />;
       case "Pedidos em Aberto":
-        return <h2>Página de Pedidos em Aberto</h2>;
+        return <ListarPedidos />;
       case "Estoque":
         return <h2>Página de Estoque</h2>;
       default:

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import "../styles/CriarPedido.css";
 
-const CriarPedido = () => {
+const RegistrarPedido = () => {
   const [formData, setFormData] = useState({
     customerName: "",
     orderNumber: "",
     deliveryDate: "",
-    items: [{ itemName: "", quantity: "", price: "" }], 
+    orderDate: "", // New field for "Pedido em (data)"
+    status: "Em Aberto", // New field for "Status"
+    items: [{ itemName: "", quantity: "" }],
   });
 
   const handleChange = (e) => {
@@ -24,7 +27,7 @@ const CriarPedido = () => {
   const handleAddItem = () => {
     setFormData({
       ...formData,
-      items: [...formData.items, { itemName: "", quantity: "", price: "" }],
+      items: [...formData.items, { itemName: "", quantity: "" }],
     });
   };
 
@@ -33,21 +36,53 @@ const CriarPedido = () => {
     setFormData({ ...formData, items: updatedItems });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Pedido criado:", formData);
-    // Aqui você pode enviar os dados para a API 
-    setFormData({
-      customerName: "",
-      orderNumber: "",
-      deliveryDate: "",
-      items: [{ itemName: "", quantity: "", price: "" }],
-    });
+
+    const orderCreateDto = {
+      customerName: formData.customerName,
+      orderNumber: parseInt(formData.orderNumber, 10),
+      deliveryDate: new Date(formData.deliveryDate).toISOString(),
+      orderDate: new Date(formData.orderDate).toISOString(),
+      status: formData.status,
+      items: formData.items.map((item) => ({
+        itemName: item.itemName,
+        quantity: parseInt(item.quantity, 10),
+      })),
+    };
+
+    console.log("Enviando pedido:", orderCreateDto);
+
+    try {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderCreateDto),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao criar pedido");
+      }
+
+      console.log("Pedido criado com sucesso");
+      setFormData({
+        customerName: "",
+        orderNumber: "",
+        deliveryDate: "",
+        orderDate: "",
+        status: "Em Aberto",
+        items: [{ itemName: "", quantity: "" }],
+      });
+    } catch (error) {
+      console.error("Erro ao enviar pedido:", error);
+    }
   };
 
   return (
-    <div className="criar-pedido">
-      <h2>Criar Pedido</h2>
+    <div className="registrar-pedido">
+      <h2>Registrar Pedido</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="customerName">Nome do Cliente</label>
@@ -74,6 +109,17 @@ const CriarPedido = () => {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="orderDate">Pedido em (Data)</label>
+          <input
+            type="date"
+            id="orderDate"
+            name="orderDate"
+            value={formData.orderDate}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="deliveryDate">Data de Entrega</label>
           <input
             type="date"
@@ -84,45 +130,41 @@ const CriarPedido = () => {
             required
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="status">Status</label>
+          <select
+            id="status"
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
+            required
+          >
+            <option value="Em Aberto">Em Aberto</option>
+            <option value="OK">OK</option>
+          </select>
+        </div>
 
         <h3>Itens do Pedido</h3>
         <div className="items-container">
           {formData.items.map((item, index) => (
             <div className="item-group" key={index}>
               <div className="form-group">
-                <label htmlFor={`itemName-${index}`}>Nome do Item</label>
                 <input
                   type="text"
-                  id={`itemName-${index}`}
                   name="itemName"
                   value={item.itemName}
                   onChange={(e) => handleItemChange(index, e)}
-                  placeholder="Digite o nome do item"
+                  placeholder="Nome do Item"
                   required
                 />
               </div>
               <div className="form-group">
-                <label htmlFor={`quantity-${index}`}>Quantidade</label>
                 <input
                   type="number"
-                  id={`quantity-${index}`}
                   name="quantity"
                   value={item.quantity}
                   onChange={(e) => handleItemChange(index, e)}
-                  placeholder="Digite a quantidade"
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor={`price-${index}`}>Preço</label>
-                <input
-                  type="number"
-                  id={`price-${index}`}
-                  name="price"
-                  value={item.price}
-                  onChange={(e) => handleItemChange(index, e)}
-                  placeholder="Digite o preço"
-                  step="0.01"
+                  placeholder="Quantidade"
                   required
                 />
               </div>
@@ -131,7 +173,7 @@ const CriarPedido = () => {
                 className="remove-item-button"
                 onClick={() => handleRemoveItem(index)}
               >
-                Remover Item
+                <FaTimes />
               </button>
             </div>
           ))}
@@ -139,10 +181,12 @@ const CriarPedido = () => {
         <button type="button" className="add-item-button" onClick={handleAddItem}>
           Adicionar Item
         </button>
-        <button type="submit" className="submit-button">Criar Pedido</button>
+        <button type="submit" className="submit-button">
+          Registrar Pedido
+        </button>
       </form>
     </div>
   );
 };
 
-export default CriarPedido;
+export default RegistrarPedido;

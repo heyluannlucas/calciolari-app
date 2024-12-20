@@ -1,0 +1,54 @@
+
+.lista-pedidos {
+    padding: 20px;
+    font-family: 'Work Sans', sans-serif;
+    color: #2C3A2C;
+    background: none;
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  .lista-pedidos h2 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .pedidos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .pedidos-table th, .pedidos-table td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .pedidos-table th {
+    background-color: #2C3A2C;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .pedidos-table td ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .delete-button {
+    background: #2C3A2C;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .delete-button:hover {
+    background: #444;
+  }
+  

@@ -3,9 +3,9 @@ import { FaEdit, FaSave, FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 
 function Estoque() {
   const [estoque, setEstoque] = useState([]);
-  const [editingRow, setEditingRow] = useState(null); // Linha em edição
-  const [reabastecendoItem, setReabastecendoItem] = useState(null); // Item para reabastecer
-  const [abatendoItem, setAbatendoItem] = useState(null); // Item para abater
+  const [editingRow, setEditingRow] = useState(null); 
+  const [reabastecendoItem, setReabastecendoItem] = useState(null); 
+  const [abatendoItem, setAbatendoItem] = useState(null); 
 
   useEffect(() => {
     const mockEstoque = [

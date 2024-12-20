@@ -5,7 +5,7 @@ const CriarProduto = () => {
   const [formData, setFormData] = useState({
     code: "",
     name: "",
-    type: "Integral", // Valor padrão do select
+    type: "Integral", 
     quantity: "",
     price: "",
   });
@@ -24,7 +24,7 @@ const CriarProduto = () => {
 
   return (
     <div className="criar-produto">
-      <h2>Criar Produto</h2>
+      <h2>Registrar Produto</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="code">Código</label>
