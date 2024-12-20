@@ -5,7 +5,7 @@ const CriarProduto = () => {
   const [formData, setFormData] = useState({
     code: "",
     name: "",
-    type: "",
+    type: "Integral", // Valor padrão do select
     quantity: "",
     price: "",
   });
@@ -19,7 +19,7 @@ const CriarProduto = () => {
     e.preventDefault();
     console.log("Produto criado:", formData);
     // Aqui você pode enviar os dados para a API 
-    setFormData({ code: "", name: "", type: "", quantity: "", price: "" });
+    setFormData({ code: "", name: "", type: "Integral", quantity: "", price: "" });
   };
 
   return (
@@ -52,15 +52,17 @@ const CriarProduto = () => {
         </div>
         <div className="form-group">
           <label htmlFor="type">Tipo</label>
-          <input
-            type="text"
+          <select
             id="type"
             name="type"
             value={formData.type}
             onChange={handleChange}
-            placeholder="Digite o tipo do produto"
             required
-          />
+          >
+            <option value="Integral">Integral</option>
+            <option value="Fresco">Fresco</option>
+            <option value="Congelado">Congelado</option>
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="quantity">Quantidade</label>
