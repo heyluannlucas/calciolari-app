@@ -125,7 +125,6 @@ function Estoque() {
         </tbody>
       </table>
 
-      {/* Modal de Reabastecimento */}
       {reabastecendoItem && (
         <div className="modal">
           <div className="modal-content">
@@ -158,7 +157,6 @@ function Estoque() {
         </div>
       )}
 
-      {/* Modal de Abatimento */}
       {abatendoItem && (
         <div className="modal">
           <div className="modal-content">

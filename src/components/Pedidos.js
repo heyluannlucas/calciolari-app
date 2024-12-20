@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FaEdit, FaSave, FaTrash } from "react-icons/fa"; // Importando ícones adicionais
+import { FaEdit, FaSave, FaTrash } from "react-icons/fa"; 
 
 function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
-  const [editingRow, setEditingRow] = useState(null); // Linha em edição
+  const [editingRow, setEditingRow] = useState(null);
 
   useEffect(() => {
     const mockPedidos = [

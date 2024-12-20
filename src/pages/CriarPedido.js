@@ -6,7 +6,7 @@ const CriarPedido = () => {
     customerName: "",
     orderNumber: "",
     deliveryDate: "",
-    items: [{ itemName: "", quantity: "", price: "" }], // Exemplo inicial de item
+    items: [{ itemName: "", quantity: "", price: "" }], 
   });
 
   const handleChange = (e) => {
@@ -36,7 +36,7 @@ const CriarPedido = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Pedido criado:", formData);
-    // Aqui você pode enviar os dados para uma API ou processá-los conforme necessário
+    // Aqui você pode enviar os dados para a API 
     setFormData({
       customerName: "",
       orderNumber: "",

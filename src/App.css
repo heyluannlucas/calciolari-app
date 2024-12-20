@@ -1,12 +1,12 @@
-/* Aplicando a fonte Work Sans globalmente */
-body {
-  font-family: 'Work Sans', sans-serif;
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+  background-color: #F7F7EB; 
 }
 
-/* Estilo existente */
 .app-container {
   display: flex;
   height: 100vh;
@@ -69,8 +69,8 @@ body {
   padding: 15px 30px;
   background: #2C3A2C;
   color: #F7F7EB;
-  border: 2px solid #444; /* Borda personalizada */
-  border-radius: 17px; /* Bordas arredondadas */
+  border: 2px solid #444; 
+  border-radius: 17px; 
 }
 
 
@@ -182,7 +182,7 @@ button:hover {
 }
 
 .overlay-content {
-  position: relative; /* Torna o container referência para o botão */
+  position: relative; 
   background: #fff;
   color: #2C3A2C;
   padding: 20px;
@@ -196,7 +196,7 @@ button:hover {
 
 .close-button {
   position: absolute;
-  top: 10px; /* Ajusta a posição dentro do container */
+  top: 10px; 
   right: 10px;
   background: none;
   border: none;

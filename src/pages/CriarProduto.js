@@ -18,7 +18,7 @@ const CriarProduto = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Produto criado:", formData);
-    // Aqui você pode enviar os dados para uma API ou processá-los conforme necessário
+    // Aqui você pode enviar os dados para a API 
     setFormData({ code: "", name: "", type: "", quantity: "", price: "" });
   };
 

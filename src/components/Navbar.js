@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
 
 function Navbar({ onNavClick }) {
   const [dateTime, setDateTime] = useState("");
   const [showFloatingMenu, setShowFloatingMenu] = useState(false);
-  const floatingMenuRef = useRef(null); 
+  const floatingMenuRef = useRef(null);
 
   useEffect(() => {
     const updateDateTime = () => {
@@ -31,7 +31,7 @@ function Navbar({ onNavClick }) {
         floatingMenuRef.current &&
         !floatingMenuRef.current.contains(event.target)
       ) {
-        setShowFloatingMenu(false); 
+        setShowFloatingMenu(false);
       }
     };
 
