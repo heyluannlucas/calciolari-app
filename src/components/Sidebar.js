@@ -24,7 +24,8 @@ function Sidebar() {
       <Logo
         style={{
           fill: "#F7F7EB",
-          marginBottom: "40px",
+          marginTop: "70px",
+          marginBottom: "70px",
           width: "240px", 
           height: "auto", 
         }}
