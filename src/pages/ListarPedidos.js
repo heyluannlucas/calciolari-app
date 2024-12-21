@@ -4,6 +4,7 @@ import "../styles/ListarPedidos.css";
 const ListaPedidos = () => {
   const [pedidos, setPedidos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const mockPedidos = [
@@ -61,9 +62,14 @@ const ListaPedidos = () => {
     return <div>Carregando pedidos...</div>;
   }
 
-  const pedidosEmAberto = pedidos.filter((pedido) => pedido.status === "Em Aberto");
+  const filteredPedidos = pedidos.filter(
+    (pedido) =>
+      pedido.status === "Em Aberto" &&
+      (pedido.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        pedido.id.toString().includes(searchTerm))
+  );
 
-  if (pedidosEmAberto.length === 0) {
+  if (filteredPedidos.length === 0) {
     return <div>Nenhum pedido em aberto encontrado</div>;
   }
 
@@ -71,6 +77,13 @@ const ListaPedidos = () => {
     <div className="lista-pedidos">
       <div className="lista-pedidos-container">
         <h2>Pedidos Em Aberto</h2>
+        <input
+          type="text"
+          placeholder="Pesquisar por ID ou Nome"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
         <div className="table-container">
           <table className="pedidos-table">
             <thead>
@@ -84,7 +97,7 @@ const ListaPedidos = () => {
               </tr>
             </thead>
             <tbody>
-              {pedidosEmAberto.map((pedido) => (
+              {filteredPedidos.map((pedido) => (
                 <tr key={pedido.id}>
                   <td>{pedido.id}</td>
                   <td>{pedido.customerName}</td>

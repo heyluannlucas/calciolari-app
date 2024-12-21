@@ -28,21 +28,26 @@ function OverlayPage({ page, onClose }) {
 
   const handleOverlayClick = (e) => {
     if (e.target.className === "overlay") {
-      if (page === "Consultar") {
-        onClose();
-      } else if (window.confirm("Tem certeza que deseja sair sem salvar?")) {
+      if (["RegistrarCliente", "RegistrarProduto", "RegistrarPedido"].includes(page)) {
+        if (window.confirm("Tem certeza que deseja sair sem salvar?")) {
+          onClose();
+        }
+      } else {
         onClose();
       }
     }
   };
-
+  
   const handleCloseClick = () => {
-    if (page === "Consultar") {
-      onClose();
-    } else if (window.confirm("Tem certeza que deseja sair sem salvar?")) {
+    if (["RegistrarCliente", "RegistrarProduto", "RegistrarPedido"].includes(page)) {
+      if (window.confirm("Tem certeza que deseja sair sem salvar?")) {
+        onClose();
+      }
+    } else {
       onClose();
     }
   };
+  
 
   return (
     <div

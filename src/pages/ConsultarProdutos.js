@@ -26,16 +26,18 @@ function Consultar() {
     },
   ];
 
-  const [searchCode, setSearchCode] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(mockData);
 
   const handleSearch = (e) => {
-    const value = e.target.value;
-    setSearchCode(value);
+    const value = e.target.value.toLowerCase();
+    setSearchTerm(value);
 
     if (value) {
-      const filtered = mockData.filter((product) =>
-        product.code.toString().includes(value)
+      const filtered = mockData.filter(
+        (product) =>
+          product.code.toString().includes(value) ||
+          product.name.toLowerCase().includes(value)
       );
       setFilteredProducts(filtered);
     } else {
@@ -47,13 +49,13 @@ function Consultar() {
     <div className="consultar">
       <h2>Consulta de Produtos</h2>
       <div className="search-bar">
-        <label htmlFor="searchCode">Código do Produto:</label>
+        <label htmlFor="searchTerm">Código ou Nome do Produto:</label>
         <input
-          id="searchCode"
-          type="number"
-          value={searchCode}
+          id="searchTerm"
+          type="text"
+          value={searchTerm}
           onChange={handleSearch}
-          placeholder="Digite o código"
+          placeholder="Digite o código ou nome"
         />
       </div>
 

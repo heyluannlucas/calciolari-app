@@ -200,13 +200,22 @@ button:hover {
   right: 10px;
   background: none;
   border: none;
-  font-size: 20px;
   cursor: pointer;
-  color: #2C3A2C;
+  padding: 5px; 
 }
 
 .close-button:hover {
-  color: #444;
+  background: none; 
+}
+
+.close-button svg {
+  color: #2C3A2C;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.close-button svg:hover {
+  color: #444; 
 }
 
 .edit-form, .reabastecer-form {
