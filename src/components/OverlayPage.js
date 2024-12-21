@@ -29,7 +29,7 @@ function OverlayPage({ page, onClose }) {
   const handleOverlayClick = (e) => {
     if (e.target.className === "overlay") {
       if (page === "Consultar") {
-        onClose(); 
+        onClose();
       } else if (window.confirm("Tem certeza que deseja sair sem salvar?")) {
         onClose();
       }
@@ -38,7 +38,7 @@ function OverlayPage({ page, onClose }) {
 
   const handleCloseClick = () => {
     if (page === "Consultar") {
-      onClose(); 
+      onClose();
     } else if (window.confirm("Tem certeza que deseja sair sem salvar?")) {
       onClose();
     }
@@ -48,15 +48,24 @@ function OverlayPage({ page, onClose }) {
     <div
       className="overlay"
       onClick={handleOverlayClick}
-      style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
       <div
-        className="overlay-content"
-        style={
-          page === "Consultar"
-            ? { width: "1345px", height: "734px", display: "flex", flexDirection: "row" }
-            : {}
-        }
+        className={`overlay-content ${
+          page === "Pedidos em Aberto"
+            ? "overlay-content-pedidos"
+            : page === "Consultar"
+            ? "overlay-content-consultar"
+            : ""
+        }`}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
         <button className="close-button" onClick={handleCloseClick}>
           <FaTimes size={24} />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/CriarPedido.css";
+import "../styles/ListarPedidos.css";
 
 const ListaPedidos = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -22,18 +22,14 @@ const ListaPedidos = () => {
         customerName: "Maria Oliveira",
         deliveryDate: "2024-12-26T00:00:00.000Z",
         status: "OK",
-        items: [
-          { itemName: "Item C", quantity: 5 },
-        ],
+        items: [{ itemName: "Item C", quantity: 5 }],
       },
       {
         id: 3,
         customerName: "Carlos Pereira",
         deliveryDate: "2024-12-27T00:00:00.000Z",
         status: "Em Aberto",
-        items: [
-          { itemName: "Item D", quantity: 3 },
-        ],
+        items: [{ itemName: "Item D", quantity: 3 }],
       },
     ];
 
@@ -73,54 +69,58 @@ const ListaPedidos = () => {
 
   return (
     <div className="lista-pedidos">
-      <h2>Pedidos Em Aberto</h2>
-      <table className="pedidos-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Cliente</th>
-            <th>Data de Entrega</th>
-            <th>Itens</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pedidosEmAberto.map((pedido) => (
-            <tr key={pedido.id}>
-              <td>{pedido.id}</td>
-              <td>{pedido.customerName}</td>
-              <td>{new Date(pedido.deliveryDate).toLocaleDateString()}</td>
-              <td>
-                <ul>
-                  {pedido.items.map((item, index) => (
-                    <li key={index}>
-                      {item.itemName} - {item.quantity}
-                    </li>
-                  ))}
-                </ul>
-              </td>
-              <td>{pedido.status}</td>
-              <td>
-                <button
-                  className="change-status-button"
-                  onClick={() => handleChangeStatus(pedido.id)}
-                  style={{ marginRight: "10px", cursor: "pointer" }}
-                >
-                  Marcar como OK
-                </button>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(pedido.id)}
-                  style={{ cursor: "pointer" }}
-                >
-                  Excluir
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="lista-pedidos-container">
+        <h2>Pedidos Em Aberto</h2>
+        <div className="table-container">
+          <table className="pedidos-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Data de Entrega</th>
+                <th>Itens</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pedidosEmAberto.map((pedido) => (
+                <tr key={pedido.id}>
+                  <td>{pedido.id}</td>
+                  <td>{pedido.customerName}</td>
+                  <td>{new Date(pedido.deliveryDate).toLocaleDateString()}</td>
+                  <td>
+                    <ul>
+                      {pedido.items.map((item, index) => (
+                        <li key={index}>
+                          {item.itemName} - {item.quantity}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td>{pedido.status}</td>
+                  <td>
+                    <button
+                      className="change-status-button"
+                      onClick={() => handleChangeStatus(pedido.id)}
+                      style={{ marginRight: "10px", cursor: "pointer" }}
+                    >
+                      Marcar como OK
+                    </button>
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDelete(pedido.id)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };

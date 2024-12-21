@@ -7,8 +7,8 @@ const RegistrarPedido = () => {
     customerName: "",
     orderNumber: "",
     deliveryDate: "",
-    orderDate: "", // New field for "Pedido em (data)"
-    status: "Em Aberto", // New field for "Status"
+    orderDate: "", 
+    status: "Em Aberto", 
     items: [{ itemName: "", quantity: "" }],
   });
 
